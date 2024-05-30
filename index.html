@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+.container {  display: grid;
+  grid-template-columns: 1.3fr 1.7fr 0.1fr;
+  grid-template-rows: 0.2fr 0.1fr 3.6fr 1.1fr 0.4fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "title title title"
+    ". . ."
+    "game store store"
+    "extras extras extras"
+    "footer footer footer";
+    height: 100vh;
+}
+
+
+
+.title { grid-area: title; 
+background-color: rgb(30, 103, 76);
+}
+
+.game {  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1.2fr 0.8fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". . ."
+    ". . ."
+    "stats stats stats";
+  grid-area: game;
+  background-color: antiquewhite; 
+}
+
+.stats { grid-area: stats;
+    background-color: aqua; }
+.description { grid-area: description;
+background-color: limegreen;}
+
+.extras { grid-area: extras; 
+    background-color: aquamarine;}
+
+.footer { grid-area: footer
+    ;
+    background-color:rgb(74, 100, 100) ; }
+
+.store {  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "item1 item2 item3"
+    "item4 item5 item6"
+    "item7 item8 item9";
+  grid-area: store;
+  background-color:beige ;
+}
+
+.item1 { grid-area: item1; 
+    background-color: red;}
+
+.item2 { grid-area: item2; 
+    background-color: orange;}
+
+.item3 { grid-area: item3; 
+    background-color: blueviolet;}
+
+.item4 { grid-area: item4; 
+background-color:yellow;}
+
+.item5 { grid-area: item5;
+    background-color: green; }
+
+.item6 { grid-area: item6;
+    background-color:brown; }
+
+.item7 { grid-area: item7; 
+    background-color: blue;}
+
+.item8 { grid-area: item8; 
+    background-color:pink}
+
+.item9 { grid-area: item9;
+    background-color:purple }
+
+.clicker{
+    border: none;
+            cursor: pointer;
+            background: none;}
+
+.clickerpic{
+    height: fit-content;
+}
+.mini { grid-area: 4 / 1 / 5 / 2; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title"><h1> Pastel Washing</h1> </div>
+        <div class="game">
+
+            <p> put button here</p>
+            <button class="clicker"><img src="machine.png" alt="" class="clickerpic"></button>
+        </div>
+        <div class="extras">  <div class=""> <button class="mini"><img src="machine.png" alt="" class="clickerpic"></button>
+        </div>
+        <div class=""> <button class="mini"><img src="machine.png" alt="" class="clickerpic"></button>
+        </div>
+        <div class=""> <button class="mini"><img src="machine.png" alt="" class="clickerpic"></button>
+        </div>
+        <div class=""> <button class="mini"><img src="machine.png" alt="" class="clickerpic"></button>
+      </div></div>
+        <div class="footer"> Credite to Leidoe07 and canva</div>
+        <div class="store">
+          <div class="item1"> <button class="clicker"><img src="machine.png" alt="" class="clickerpic"></button>
+          </div>
+          <div class="item2"> <button class="clicker"><img src="machine.png" alt="" class="clickerpic"></button>
+          </div>
+          <div class="item3"> <button class="clicker"><img src="machine.png" alt="" class="clickerpic"></button>
+          </div>
+          <div class="item4"> <button class="clicker"><img src="machine.png" alt="" class="clickerpic"></button>
+        </div>
+          <div class="item5"> <button class="clicker"><img src="machine.png" alt="" class="clickerpic"></button>
+         </div>
+          <div class="item6"> <button class="clicker"><img src="machine.png" alt="" class="clickerpic"></button>
+          </div>
+          <div class="item7"> <button class="clicker"><img src="machine.png" alt="" class="clickerpic"></button>
+          </div>
+          <div class="item8"> <button class="clicker"><img src="machine.png" alt="" class="clickerpic"></button>
+          </div>
+          <div class="item9"> <button class="clicker"><img src="machine.png" alt="" class="clickerpic"></button>
+          </div>
+        </div>
+      </div>
+
+
+      falling in my dreamssss
+</body>
+</html>
