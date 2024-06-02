@@ -23,7 +23,7 @@
 
         .title { 
             grid-area: title; 
-            background-color: rgb(30, 103, 76);
+            background-color: rgb(177, 211, 199);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -61,11 +61,11 @@
 
         .extras { 
             grid-area: extras; 
-            background-color: aquamarine;
+            background-color: rgba(127, 255, 212, 0.475);
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+           
         }
 
         .footer { 
@@ -94,15 +94,15 @@
             flex-direction: column;
         }
 
-        .item1 { background-color: red; }
-        .item2 { background-color: orange; }
-        .item3 { background-color: blueviolet; }
-        .item4 { background-color: yellow; }
-        .item5 { background-color: green; }
-        .item6 { background-color: brown; }
-        .item7 { background-color: blue; }
-        .item8 { background-color: pink; }
-        .item9 { background-color: purple; }
+        .item1 { background-color: #FFF3E0; }
+        .item2 { background-color: #FFF3E0; }
+        .item3 { background-color: #FFF3E0; }
+        .item4 { background-color: #FFF3E0; }
+        .item5 { background-color: #FFF3E0; }
+        .item6 { background-color: #FFF3E0; }
+        .item7 { background-color: #FFF3E0; }
+        .item8 { background-color: #FFF3E0; }
+        .item9 { background-color: #FFF3E0; }
 
         .clicker, .mini {
             border: none;
@@ -111,7 +111,7 @@
         }
 
         .clickerpic {
-            height: fit-content;
+            height: 400px;
         }
 
         .mini {
@@ -138,138 +138,103 @@
             <div class="stats" id="score">Score: 0</div>
         </div>
         <div class="extras">
-          <button class="mini" onclick="buyItem('miniMachine1')"><img src="machine.png" alt="Mini Image" class="clickerpic"></button>
-          <button class="mini" onclick="buyItem('miniMachine2')"><img src="machine.png" alt="Mini Image" class="clickerpic"></button>
-          <!-- Add more mini machines as needed -->
+          
       </div>
-      
-        <div class="footer">Credit to Leidoe07 and Canva</div>
+      <br>
+      <div class="footer">Credit to Leidoe07 and Canva</div>
         <div class="store">
             <div class="item1 item">
                 <button class="clicker" onclick="buyItem('detergentPod')">
                     <img src="detergent_pod.png" alt="Detergent Pod" class="clickerpic">
                 </button>
                 <p>Detergent Pod</p>
-                <p id="detergentPod-price">Price: 10</p>
             </div>
             <div class="item2 item">
                 <button class="clicker" onclick="buyItem('powderDetergent')">
                     <img src="powder_detergent.png" alt="Powder Detergent" class="clickerpic">
                 </button>
                 <p>Powder Detergent</p>
-                <p id="powderDetergent-price">Price: 20</p>
             </div>
             <div class="item3 item">
                 <button class="clicker" onclick="buyItem('basicSoap')">
                     <img src="basic_soap.png" alt="Basic Soap" class="clickerpic">
                 </button>
                 <p>Basic Soap</p>
-                <p id="basicSoap-price">Price: 5</p>
             </div>
             <div class="item4 item">
                 <button class="clicker" onclick="buyItem('fabricSoftener')">
                     <img src="fabric_softener.png" alt="Fabric Softener" class="clickerpic">
                 </button>
                 <p>Fabric Softener</p>
-                <p id="fabricSoftener-price">Price: 15</p>
             </div>
             <div class="item5 item">
                 <button class="clicker" onclick="buyItem('bleach')">
                     <img src="bleach.png" alt="Bleach" class="clickerpic">
                 </button>
                 <p>Bleach</p>
-                <p id="bleach-price">Price: 25</p>
             </div>
             <div class="item6 item">
                 <button class="clicker" onclick="buyItem('stainRemover')">
                     <img src="stain_remover.png" alt="Stain Remover" class="clickerpic">
                 </button>
                 <p>Stain Remover</p>
-                <p id="stainRemover-price">Price: 30</p>
             </div>
             <div class="item7 item">
                 <button class="clicker" onclick="buyItem('scentBooster')">
                     <img src="scent_booster.png" alt="Scent Booster" class="clickerpic">
                 </button>
                 <p>Scent Booster</p>
-                <p id="scentBooster-price">Price: 40</p>
             </div>
             <div class="item8 item">
                 <button class="clicker" onclick="buyItem('washingMachineCleaner')">
                     <img src="washing_machine_cleaner.png" alt="Washing Machine Cleaner" class="clickerpic">
                 </button>
                 <p>Washing Machine Cleaner</p>
-                <p id="washingMachineCleaner-price">Price: 50</p>
             </div>
             <div class="item9 item">
                 <button class="clicker" onclick="buyItem('dryerSheets')">
                     <img src="dryer_sheets.png" alt="Dryer Sheets" class="clickerpic">
                 </button>
                 <p>Dryer Sheets</p>
-                <p id="dryerSheets-price">Price: 60</p>
             </div>
         </div>
     </div>
 
     <script>
-      let score = 0;
-      let items = {
-          detergentPod: { price: 10, increment: 1, interval: 3000 },
-          powderDetergent: { price: 20, increment: 7, interval: 10000 },
-          basicSoap: { price: 5, increment: 0.5, interval: 1000 },
-          fabricSoftener: { price: 15, increment: 1.5, interval: 2000 },
-          bleach: { price: 25, increment: 3, interval: 3000 },
-          stainRemover: { price: 30, increment: 3.5, interval: 4000 },
-          scentBooster: { price: 40, increment: 4, interval: 5000 },
-          washingMachineCleaner: { price: 50, increment: 5, interval: 6000 },
-          dryerSheets: { price: 60, increment: 6, interval: 7000 },
-          miniMachine1: { price: 1000, increment: 4000, interval: 240000 },
-          miniMachine2: { price: 2000, increment: 4000, interval: 240000 }
-          // Add more mini machines as needed
-      };
-  
-      function incrementScore(amount) {
-          score += amount;
-          updateScoreDisplay();
-      }
-  
-      function updateScoreDisplay() {
-          document.getElementById('score').innerText = `Score: ${score}`;
-      }
-  
-      function buyItem(item) {
-          const itemData = items[item];
-          if (score >= itemData.price) {
-              score -= itemData.price;
-              itemData.price *= 2; // Double the price for the next purchase
-              updateScoreDisplay();
-              alert(`You bought ${item.replace(/([A-Z])/g, ' $1').toLowerCase()}!`);
-              // Start interval if not already running
-              if (!itemData.intervalId) {
-                  itemData.intervalId = setInterval(() => {
-                      score += itemData.increment;
-                      updateScoreDisplay();
-                  }, itemData.interval);
-              }
-          } else {
-              alert('Not enough score to buy this item.');
-          }
-      }
-  
-      // Function to handle the mini machines
-      function activateMiniMachine(machine) {
-          const machineData = items[machine];
-          if (!machineData.intervalId) {
-              machineData.intervalId = setInterval(() => {
-                  score += machineData.increment;
-                  updateScoreDisplay();
-              }, machineData.interval);
-              alert(`You activated ${machine.replace(/([A-Z])/g, ' $1').toLowerCase()}!`);
-          } else {
-              alert('This mini machine is already activated.');
-          }
-      }
-  </script>
+        let score = 0;
+
+        function incrementScore() {
+            score++;
+            document.getElementById('score').innerText = `Score: ${score}`;
+        }
+
+        function buyItem(item) {
+            // Example logic for buying items
+            const itemPrices = {
+                detergentPod: 10,
+                powderDetergent: 20,
+                basicSoap: 5,
+                fabricSoftener: 15,
+                bleach: 25,
+                stainRemover: 30,
+                scentBooster: 40,
+                washingMachineCleaner: 50,
+                dryerSheets: 60
+            };
+
+            const itemPrice = itemPrices[item];
+            if (score >= itemPrice) {
+                score -= itemPrice;
+                document.getElementById('score').innerText = `Score: ${score}`;
+                alert(`You bought ${item.replace(/([A-Z])/g, ' $1').toLowerCase()}!`);
+            } else {
+                alert('Not enough score to buy this item.');
+            }
+        }
+    </script>
+</body>
+</html>
+               
   
 
                
