@@ -46,11 +46,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
         }
 
         .stats { 
             grid-area: stats;
             background-color: aqua; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            margin-top: 20px;
         }
 
         .extras { 
@@ -85,6 +91,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
         }
 
         .item1 { background-color: red; }
@@ -127,7 +134,8 @@
     <div class="container">
         <div class="title"><h1>Pastel Washing</h1></div>
         <div class="game">
-            <button class="clicker"><img src="machine.png" alt="Clicker Image" class="clickerpic"></button>
+            <button class="clicker" onclick="incrementScore()"><img src="machine.png" alt="Clicker Image" class="clickerpic"></button>
+            <div class="stats" id="score">Score: 0</div>
         </div>
         <div class="extras">
             <button class="mini"><img src="machine.png" alt="Mini Image" class="clickerpic"></button>
@@ -137,21 +145,94 @@
         </div>
         <div class="footer">Credit to Leidoe07 and Canva</div>
         <div class="store">
-            <div class="item1 item"><button class="clicker"><img src="detergent_pod.png" alt="Detergent Pod" class="clickerpic"></button><p>Detergent Pod</p></div>
-            <div class="item2 item"><button class="clicker"><img src="powder_detergent.png" alt="Powder Detergent" class="clickerpic"></button><p>Powder Detergent</p></div>
-            <div class="item3 item"><button class="clicker"><img src="basic_soap.png" alt="Basic Soap" class="clickerpic"></button><p>Basic Soap</p></div>
-            <div class="item4 item"><button class="clicker"><img src="fabric_softener.png" alt="Fabric Softener" class="clickerpic"></button><p>Fabric Softener</p></div>
-            <div class="item5 item"><button class="clicker"><img src="bleach.png" alt="Bleach" class="clickerpic"></button><p>Bleach</p></div>
-            <div class="item6 item"><button class="clicker"><img src="stain_remover.png" alt="Stain Remover" class="clickerpic"></button><p>Stain Remover</p></div>
-            <div class="item7 item"><button class="clicker"><img src="scent_booster.png" alt="Scent Booster" class="clickerpic"></button><p>Scent Booster</p></div>
-            <div class="item8 item"><button class="clicker"><img src="washing_machine_cleaner.png" alt="Washing Machine Cleaner" class="clickerpic"></button><p>Washing Machine Cleaner</p></div>
-            <div class="item9 item"><button class="clicker"><img src="dryer_sheets.png" alt="Dryer Sheets" class="clickerpic"></button><p>Dryer Sheets</p></div>
+            <div class="item1 item">
+                <button class="clicker" onclick="buyItem('detergentPod')">
+                    <img src="detergent_pod.png" alt="Detergent Pod" class="clickerpic">
+                </button>
+                <p>Detergent Pod</p>
+            </div>
+            <div class="item2 item">
+                <button class="clicker" onclick="buyItem('powderDetergent')">
+                    <img src="powder_detergent.png" alt="Powder Detergent" class="clickerpic">
+                </button>
+                <p>Powder Detergent</p>
+            </div>
+            <div class="item3 item">
+                <button class="clicker" onclick="buyItem('basicSoap')">
+                    <img src="basic_soap.png" alt="Basic Soap" class="clickerpic">
+                </button>
+                <p>Basic Soap</p>
+            </div>
+            <div class="item4 item">
+                <button class="clicker" onclick="buyItem('fabricSoftener')">
+                    <img src="fabric_softener.png" alt="Fabric Softener" class="clickerpic">
+                </button>
+                <p>Fabric Softener</p>
+            </div>
+            <div class="item5 item">
+                <button class="clicker" onclick="buyItem('bleach')">
+                    <img src="bleach.png" alt="Bleach" class="clickerpic">
+                </button>
+                <p>Bleach</p>
+            </div>
+            <div class="item6 item">
+                <button class="clicker" onclick="buyItem('stainRemover')">
+                    <img src="stain_remover.png" alt="Stain Remover" class="clickerpic">
+                </button>
+                <p>Stain Remover</p>
+            </div>
+            <div class="item7 item">
+                <button class="clicker" onclick="buyItem('scentBooster')">
+                    <img src="scent_booster.png" alt="Scent Booster" class="clickerpic">
+                </button>
+                <p>Scent Booster</p>
+            </div>
+            <div class="item8 item">
+                <button class="clicker" onclick="buyItem('washingMachineCleaner')">
+                    <img src="washing_machine_cleaner.png" alt="Washing Machine Cleaner" class="clickerpic">
+                </button>
+                <p>Washing Machine Cleaner</p>
+            </div>
+            <div class="item9 item">
+                <button class="clicker" onclick="buyItem('dryerSheets')">
+                    <img src="dryer_sheets.png" alt="Dryer Sheets" class="clickerpic">
+                </button>
+                <p>Dryer Sheets</p>
+            </div>
         </div>
     </div>
-</body>
-</html>
 
+    <script>
+        let score = 0;
 
-    </div>
+        function incrementScore() {
+            score++;
+            document.getElementById('score').innerText = `Score: ${score}`;
+        }
+
+        function buyItem(item) {
+            // Example logic for buying items
+            const itemPrices = {
+                detergentPod: 10,
+                powderDetergent: 20,
+                basicSoap: 5,
+                fabricSoftener: 15,
+                bleach: 25,
+                stainRemover: 30,
+                scentBooster: 40,
+                washingMachineCleaner: 50,
+                dryerSheets: 60
+            };
+
+            const itemPrice = itemPrices[item];
+            if (score >= itemPrice) {
+                score -= itemPrice;
+                document.getElementById('score').innerText = `Score: ${score}`;
+                alert(`You bought ${item.replace(/([A-Z])/g, ' $1').toLowerCase()}!`);
+            } else {
+                alert('Not enough score to buy this item.');
+            }
+        }
+    </script>
 </body>
 </html>
