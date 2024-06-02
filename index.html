@@ -51,7 +51,7 @@
 
         .stats { 
             grid-area: stats;
-            background-color: aqua; 
+            background-color: rgba(0, 255, 255, 0.292); 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -134,7 +134,7 @@
     <div class="container">
         <div class="title"><h1>Pastel Washing</h1></div>
         <div class="game">
-            <button class="clicker" onclick="incrementScore()"><img src="machine.png" alt="Clicker Image" class="clickerpic"></button>
+            <button class="clicker" onclick="incrementScore()"><img src="images/machine.png" alt="Clicker Image" class="clickerpic"></button>
             <div class="stats" id="score">Score: 0</div>
         </div>
         <div class="extras">
@@ -145,55 +145,55 @@
         <div class="store">
             <div class="item1 item">
                 <button class="clicker" onclick="buyItem('detergentPod')">
-                    <img src="detergent_pod.png" alt="Detergent Pod" class="clickerpic">
+                    <img src=" images/detergent_pod.png" alt="Detergent Pod" class="clickerpic">
                 </button>
                 <p>Detergent Pod</p>
             </div>
             <div class="item2 item">
                 <button class="clicker" onclick="buyItem('powderDetergent')">
-                    <img src="powder_detergent.png" alt="Powder Detergent" class="clickerpic">
+                    <img src="images/powder_detergent.png" alt="Powder Detergent" class="clickerpic">
                 </button>
                 <p>Powder Detergent</p>
             </div>
             <div class="item3 item">
                 <button class="clicker" onclick="buyItem('basicSoap')">
-                    <img src="basic_soap.png" alt="Basic Soap" class="clickerpic">
+                    <img src="images/basic_soap.png" alt="Basic Soap" class="clickerpic">
                 </button>
                 <p>Basic Soap</p>
             </div>
             <div class="item4 item">
                 <button class="clicker" onclick="buyItem('fabricSoftener')">
-                    <img src="fabric_softener.png" alt="Fabric Softener" class="clickerpic">
+                    <img src="images/fabric_softener.png" alt="Fabric Softener" class="clickerpic">
                 </button>
                 <p>Fabric Softener</p>
             </div>
             <div class="item5 item">
                 <button class="clicker" onclick="buyItem('bleach')">
-                    <img src="bleach.png" alt="Bleach" class="clickerpic">
+                    <img src="images/bleach.png" alt="Bleach" class="clickerpic">
                 </button>
                 <p>Bleach</p>
             </div>
             <div class="item6 item">
                 <button class="clicker" onclick="buyItem('stainRemover')">
-                    <img src="stain_remover.png" alt="Stain Remover" class="clickerpic">
+                    <img src="images/stain_remover.png" alt="Stain Remover" class="clickerpic">
                 </button>
                 <p>Stain Remover</p>
             </div>
             <div class="item7 item">
                 <button class="clicker" onclick="buyItem('scentBooster')">
-                    <img src="scent_booster.png" alt="Scent Booster" class="clickerpic">
+                    <img src="images/scent_booster.png" alt="Scent Booster" class="clickerpic">
                 </button>
                 <p>Scent Booster</p>
             </div>
             <div class="item8 item">
                 <button class="clicker" onclick="buyItem('washingMachineCleaner')">
-                    <img src="washing_machine_cleaner.png" alt="Washing Machine Cleaner" class="clickerpic">
+                    <img src="images/washing_machine_cleaner.png" alt="Washing Machine Cleaner" class="clickerpic">
                 </button>
                 <p>Washing Machine Cleaner</p>
             </div>
             <div class="item9 item">
                 <button class="clicker" onclick="buyItem('dryerSheets')">
-                    <img src="dryer_sheets.png" alt="Dryer Sheets" class="clickerpic">
+                    <img src="images/dryer_sheets.png" alt="Dryer Sheets" class="clickerpic">
                 </button>
                 <p>Dryer Sheets</p>
             </div>
@@ -201,37 +201,61 @@
     </div>
 
     <script>
-        let score = 0;
+      let score = 0;
+      let itemPrices = {
+          detergentPod: 10,
+          powderDetergent: 20,
+          basicSoap: 5,
+          fabricSoftener: 15,
+          bleach: 25,
+          stainRemover: 30,
+          scentBooster: 40,
+          washingMachineCleaner: 50,
+          dryerSheets: 60
+      };
 
-        function incrementScore() {
-            score++;
-            document.getElementById('score').innerText = `Score: ${score}`;
-        }
+      let itemTimers = {};
 
-        function buyItem(item) {
-            // Example logic for buying items
-            const itemPrices = {
-                detergentPod: 10,
-                powderDetergent: 20,
-                basicSoap: 5,
-                fabricSoftener: 15,
-                bleach: 25,
-                stainRemover: 30,
-                scentBooster: 40,
-                washingMachineCleaner: 50,
-                dryerSheets: 60
-            };
+      function incrementScore() {
+          score++;
+          document.getElementById('score').innerText = `Score: ${score}`;
+      }
 
-            const itemPrice = itemPrices[item];
-            if (score >= itemPrice) {
-                score -= itemPrice;
-                document.getElementById('score').innerText = `Score: ${score}`;
-                alert(`You bought ${item.replace(/([A-Z])/g, ' $1').toLowerCase()}!`);
-            } else {
-                alert('Not enough score to buy this item.');
-            }
-        }
-    </script>
+      function buyItem(item) {
+          const itemPrice = itemPrices[item];
+          if (score >= itemPrice) {
+              score -= itemPrice;
+              itemPrices[item] += 10; // Increase item price
+              document.getElementById('score').innerText = `Score: ${score}`;
+              document.getElementById('itemPrice').innerText = `Price: ${itemPrices[item]}`;
+              alert(`You bought ${item.replace(/([A-Z])/g, ' $1').toLowerCase()}!`);
+              startItemTimer(item);
+          } else {
+              alert('Not enough score to buy this item.');
+          }
+      }
+
+      function startItemTimer(item) {
+          if (item === 'detergentPod') {
+              itemTimers[item] = setInterval(() => {
+                  incrementScore();
+              }, 3000); // Increase score every 3 seconds
+          } else if (item === 'powderDetergent') {
+              itemTimers[item] = setInterval(() => {
+                  score += 7;
+                  document.getElementById('score').innerText = `Score: ${score}`;
+              }, 10000); // Increase score every 10 seconds
+          }
+          // Add similar blocks for other items
+      }
+
+      // You can call startItemTimer for other items here based on your requirements
+
+      // Stop item timer if needed
+      function stopItemTimer(item) {
+          clearInterval(itemTimers[item]);
+      }
+  </script>
 </body>
 </html>
                
