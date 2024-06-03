@@ -133,6 +133,7 @@
 <body>
     <div class="container">
         <div class="title"><h1>Pastel Washing</h1></div>
+        <button onclick="muteMusic()">Mute Button</button>
         <div class="game">
             <button class="clicker" onclick="incrementScore()"><img src="images/machine.png" alt="Clicker Image" class="clickerpic"></button>
             <div class="stats" id="score">Score: 0</div>
@@ -199,8 +200,24 @@
             </div>
         </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
     <script>
+
+let bgMusic = new Howl({
+    src:['Viktor Kraus - Blueberries.mp3'],
+    autoplay: true,
+    volume:.15,
+    loop: true
+})
+
+function muteMusic() {
+    bgMusic.pause()
+}
+
+
+
+
+
       let score = 0;
       let itemPrices = {
           detergentPod: 10,
@@ -225,7 +242,7 @@
           const itemPrice = itemPrices[item];
           if (score >= itemPrice) {
               score -= itemPrice;
-              itemPrices[item] += 10; // Increase item price
+              itemPrices[item] += 10; 
               document.getElementById('score').innerText = `Score: ${score}`;
               document.getElementById('itemPrice').innerText = `Price: ${itemPrices[item]}`;
               alert(`You bought ${item.replace(/([A-Z])/g, ' $1').toLowerCase()}!`);
@@ -239,19 +256,15 @@
           if (item === 'detergentPod') {
               itemTimers[item] = setInterval(() => {
                   incrementScore();
-              }, 3000); // Increase score every 3 seconds
+              }, 3000); 
           } else if (item === 'powderDetergent') {
               itemTimers[item] = setInterval(() => {
                   score += 7;
                   document.getElementById('score').innerText = `Score: ${score}`;
-              }, 10000); // Increase score every 10 seconds
-          }
-          // Add similar blocks for other items
+              }, 10000); 
       }
 
-      // You can call startItemTimer for other items here based on your requirements
-
-      // Stop item timer if needed
+      
       function stopItemTimer(item) {
           clearInterval(itemTimers[item]);
       }
