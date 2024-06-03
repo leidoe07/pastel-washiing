@@ -201,79 +201,83 @@
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+    
     <script>
 
 let bgMusic = new Howl({
     src:['Viktor Kraus - Blueberries.mp3'],
     autoplay: true,
-    volume:.15,
+    volume:.30,
     loop: true
 })
 
+
+
 function muteMusic() {
+    
     bgMusic.pause()
 }
+</script>
 
+<script>
+    let score = 0;
+    let itemPrices = {
+        detergentPod: 10,
+        powderDetergent: 20,
+        basicSoap: 5,
+        fabricSoftener: 15,
+        bleach: 25,
+        stainRemover: 30,
+        scentBooster: 40,
+        washingMachineCleaner: 50,
+        dryerSheets: 60
+    };
 
+    let itemTimers = {};
 
+    function incrementScore() {
+        score++;
+        document.getElementById('score').innerText = `Score: ${score}`;
+    }
 
+    function buyItem(item) {
+        const itemPrice = itemPrices[item];
+        if (score >= itemPrice) {
+            score -= itemPrice;
+            itemPrices[item] += 10; // Increase item price
+            document.getElementById('score').innerText = `Score: ${score}`;
+            document.getElementById('itemPrice').innerText = `Price: ${itemPrices[item]}`;
+            alert(`You bought ${item.replace(/([A-Z])/g, ' $1').toLowerCase()}!`);
+            startItemTimer(item);
+        } else {
+            alert('Not enough score to buy this item.');
+        }
+    }
 
-      let score = 0;
-      let itemPrices = {
-          detergentPod: 10,
-          powderDetergent: 20,
-          basicSoap: 5,
-          fabricSoftener: 15,
-          bleach: 25,
-          stainRemover: 30,
-          scentBooster: 40,
-          washingMachineCleaner: 50,
-          dryerSheets: 60
-      };
+    function startItemTimer(item) {
+        if (item === 'detergentPod') {
+            itemTimers[item] = setInterval(() => {
+                incrementScore();
+            }, 3000); // Increase score every 3 seconds
+        } else if (item === 'powderDetergent') {
+            itemTimers[item] = setInterval(() => {
+                score += 7;
+                document.getElementById('score').innerText = `Score: ${score}`;
+            }, 10000); // Increase score every 10 seconds
+        }
+        // Add similar blocks for other items
+    }
 
-      let itemTimers = {};
+    // You can call startItemTimer for other items here based on your requirements
 
-      function incrementScore() {
-          score++;
-          document.getElementById('score').innerText = `Score: ${score}`;
-      }
-
-      function buyItem(item) {
-          const itemPrice = itemPrices[item];
-          if (score >= itemPrice) {
-              score -= itemPrice;
-              itemPrices[item] += 10; 
-              document.getElementById('score').innerText = `Score: ${score}`;
-              document.getElementById('itemPrice').innerText = `Price: ${itemPrices[item]}`;
-              alert(`You bought ${item.replace(/([A-Z])/g, ' $1').toLowerCase()}!`);
-              startItemTimer(item);
-          } else {
-              alert('Not enough score to buy this item.');
-          }
-      }
-
-      function startItemTimer(item) {
-          if (item === 'detergentPod') {
-              itemTimers[item] = setInterval(() => {
-                  incrementScore();
-              }, 3000); 
-          } else if (item === 'powderDetergent') {
-              itemTimers[item] = setInterval(() => {
-                  score += 7;
-                  document.getElementById('score').innerText = `Score: ${score}`;
-              }, 10000); 
-      }
-
-      
-      function stopItemTimer(item) {
-          clearInterval(itemTimers[item]);
-      }
-  </script>
+    // Stop item timer if needed
+    function stopItemTimer(item) {
+        clearInterval(itemTimers[item]);
+    }
+</script>
 </body>
 </html>
-               
-  
-
-               
+             
 
 
+             
