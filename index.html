@@ -65,7 +65,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-           
         }
 
         .footer { 
@@ -133,67 +132,65 @@
 <body>
     <div class="container">
         <div class="title"><h1>Pastel Washing</h1></div>
-        <button onclick="muteMusic()">Mute Button</button>
+        <button onclick="muteMusic()" aria-label="Mute Music Button">Mute Button</button>
         <div class="game">
-            <button class="clicker" onclick="incrementScore()"><img src="images/machine.png" alt="Clicker Image" class="clickerpic"></button>
-            <div class="stats" id="score">Score: 0</div>
+            <button class="clicker" onclick="incrementScore()" aria-label="Click to increase score"><img src="images/machine.png" alt="Clicker Image" class="clickerpic"></button>
+            <div class="stats" id="score" role="status" aria-live="polite">Score: 0</div>
         </div>
-        <div class="extras">
-          
-      </div>
-      <br>
-      <div class="footer">Credit to Leidoe07 and Canva</div>
+        <div class="extras"></div>
+        <br>
+        <div class="footer">Credit to Leidoe07 and Canva</div>
         <div class="store">
             <div class="item1 item">
-                <button class="clicker" onclick="buyItem('detergentPod')">
-                    <img src=" images/detergent_pod.png" alt="Detergent Pod" class="clickerpic">
+                <button class="clicker" onclick="buyItem('detergentPod')" aria-label="Buy Detergent Pod">
+                    <img src="images/detergent_pod.png" alt="Detergent Pod" class="clickerpic">
                 </button>
                 <p>Detergent Pod</p>
             </div>
             <div class="item2 item">
-                <button class="clicker" onclick="buyItem('powderDetergent')">
+                <button class="clicker" onclick="buyItem('powderDetergent')" aria-label="Buy Powder Detergent">
                     <img src="images/powder_detergent.png" alt="Powder Detergent" class="clickerpic">
                 </button>
                 <p>Powder Detergent</p>
             </div>
             <div class="item3 item">
-                <button class="clicker" onclick="buyItem('basicSoap')">
+                <button class="clicker" onclick="buyItem('basicSoap')" aria-label="Buy Basic Soap">
                     <img src="images/basic_soap.png" alt="Basic Soap" class="clickerpic">
                 </button>
                 <p>Basic Soap</p>
             </div>
             <div class="item4 item">
-                <button class="clicker" onclick="buyItem('fabricSoftener')">
+                <button class="clicker" onclick="buyItem('fabricSoftener')" aria-label="Buy Fabric Softener">
                     <img src="images/fabric_softener.png" alt="Fabric Softener" class="clickerpic">
                 </button>
                 <p>Fabric Softener</p>
             </div>
             <div class="item5 item">
-                <button class="clicker" onclick="buyItem('bleach')">
+                <button class="clicker" onclick="buyItem('bleach')" aria-label="Buy Bleach">
                     <img src="images/bleach.png" alt="Bleach" class="clickerpic">
                 </button>
                 <p>Bleach</p>
             </div>
             <div class="item6 item">
-                <button class="clicker" onclick="buyItem('stainRemover')">
+                <button class="clicker" onclick="buyItem('stainRemover')" aria-label="Buy Stain Remover">
                     <img src="images/stain_remover.png" alt="Stain Remover" class="clickerpic">
                 </button>
                 <p>Stain Remover</p>
             </div>
             <div class="item7 item">
-                <button class="clicker" onclick="buyItem('scentBooster')">
+                <button class="clicker" onclick="buyItem('scentBooster')" aria-label="Buy Scent Booster">
                     <img src="images/scent_booster.png" alt="Scent Booster" class="clickerpic">
                 </button>
                 <p>Scent Booster</p>
             </div>
             <div class="item8 item">
-                <button class="clicker" onclick="buyItem('washingMachineCleaner')">
+                <button class="clicker" onclick="buyItem('washingMachineCleaner')" aria-label="Buy Washing Machine Cleaner">
                     <img src="images/washing_machine_cleaner.png" alt="Washing Machine Cleaner" class="clickerpic">
                 </button>
                 <p>Washing Machine Cleaner</p>
             </div>
             <div class="item9 item">
-                <button class="clicker" onclick="buyItem('dryerSheets')">
+                <button class="clicker" onclick="buyItem('dryerSheets')" aria-label="Buy Dryer Sheets">
                     <img src="images/dryer_sheets.png" alt="Dryer Sheets" class="clickerpic">
                 </button>
                 <p>Dryer Sheets</p>
@@ -203,87 +200,120 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
     
     <script>
+        let bgMusic = new Howl({
+            src:['Viktor Kraus - Blueberries.mp3'],
+            autoplay: true,
+            volume:.10,
+            loop: true
+        });
 
-let bgMusic = new Howl({
-    src:['Viktor Kraus - Blueberries.mp3'],
-    autoplay: true,
-    volume:.10,
-    loop: true
-})
-let sound1 = new Howl({
-  src: ['386508-pub_glass_wash_rinse.wav'],
-})
-function increasePoints() {
-  points = score + 1
-  386508-pub_glass_wash_rinse.wav.play() // Play sound1 when user clicks on button
-}
+        let sound1 = new Howl({
+            src: ['386508-pub_glass_wash_rinse.wav'],
+        });
 
+        function increasePoints() {
+            points = score + 1;
+            sound1.play(); // Play sound1 when user clicks on button
+        }
 
-function muteMusic() {
-    
-    bgMusic.pause()
-}
-</script>
+        function muteMusic() {
+            bgMusic.pause();
+        }
+    </script>
 
-<script>
-    let score = 0;
-    let itemPrices = {
-        detergentPod: 10,
-        powderDetergent: 20,
-        basicSoap: 5,
-        fabricSoftener: 15,
-        bleach: 25,
-        stainRemover: 30,
-        scentBooster: 40,
-        washingMachineCleaner: 50,
-        dryerSheets: 60
-    };
+    <script>
+        let score = 0;
+        let itemPrices = {
+            detergentPod: 10,
+            powderDetergent: 20,
+            basicSoap: 5,
+            fabricSoftener: 15,
+            bleach: 25,
+            stainRemover: 30,
+            scentBooster: 40,
+            washingMachineCleaner: 50,
+            dryerSheets: 60
+        };
 
-    let itemTimers = {};
+        let itemTimers = {};
 
-    function incrementScore() {
-        score++;
-        document.getElementById('score').innerText = `Score: ${score}`;
-    }
-
-    function buyItem(item) {
-        const itemPrice = itemPrices[item];
-        if (score >= itemPrice) {
-            score -= itemPrice;
-            itemPrices[item] += 10; // Increase item price
+        function incrementScore() {
+            score++;
             document.getElementById('score').innerText = `Score: ${score}`;
-            document.getElementById('itemPrice').innerText = `Price: ${itemPrices[item]}`;
-            alert(`You bought ${item.replace(/([A-Z])/g, ' $1').toLowerCase()}!`);
-            startItemTimer(item);
-        } else {
-            alert('Not enough score to buy this item.');
         }
-    }
 
-    function startItemTimer(item) {
-        if (item === 'detergentPod') {
-            itemTimers[item] = setInterval(() => {
-                incrementScore();
-            }, 3000); // Increase score every 3 seconds
-        } else if (item === 'powderDetergent') {
-            itemTimers[item] = setInterval(() => {
-                score += 7;
+        function buyItem(item) {
+            const itemPrice = itemPrices[item];
+            if (score >= itemPrice) {
+                score -= itemPrice;
+                itemPrices[item] += 10; // Increase item price
                 document.getElementById('score').innerText = `Score: ${score}`;
-            }, 10000); // Increase score every 10 seconds
+                alert(`You bought ${item.replace(/([A-Z])/g, ' $1').toLowerCase()}!`);
+                startItemTimer(item);
+            } else {
+                alert('Not enough score to buy this item.');
+            }
         }
-        // Add similar blocks for other items
-    }
 
-    // You can call startItemTimer for other items here based on your requirements
+        function startItemTimer(item) {
+            if (itemTimers[item]) {
+                clearInterval(itemTimers[item]);
+            }
 
-    // Stop item timer if needed
-    function stopItemTimer(item) {
-        clearInterval(itemTimers[item]);
-    }
-</script>
+            if (item === 'detergentPod') {
+                itemTimers[item] = setInterval(() => {
+                    incrementScore();
+                }, 3000); // Increase score every 3 seconds
+            } else if (item === 'powderDetergent') {
+                itemTimers[item] = setInterval(() => {
+                    score += 7;
+                    document.getElementById('score').innerText = `Score: ${score}`;
+                }, 10000); // Increase score every 10 seconds
+            } else if (item === 'basicSoap') {
+                itemTimers[item] = setInterval(() => {
+                    score += 2;
+                    document.getElementById('score').innerText = `Score: ${score}`;
+                }, 5000); // Increase score every 5 seconds
+            } else if (item === 'fabricSoftener') {
+                itemTimers[item] = setInterval(() => {
+                    score += 5;
+                    document.getElementById('score').innerText = `Score: ${score}`;
+                }, 7000); // Increase score every 7 seconds
+            } else if (item === 'bleach') {
+                itemTimers[item] = setInterval(() => {
+                    score += 10;
+                    document.getElementById('score').innerText = `Score: ${score}`;
+                }, 15000); // Increase score every 15 seconds
+            } else if (item === 'stainRemover') {
+                itemTimers[item] = setInterval(() => {
+                    score += 15;
+                    document.getElementById('score').innerText = `Score: ${score}`;
+                }, 20000); // Increase score every 20 seconds
+            } else if (item === 'scentBooster') {
+                itemTimers[item] = setInterval(() => {
+                    score += 20;
+                    document.getElementById('score').innerText = `Score: ${score}`;
+                }, 25000); // Increase score every 25 seconds
+            } else if (item === 'washingMachineCleaner') {
+                itemTimers[item] = setInterval(() => {
+                    score += 25;
+                    document.getElementById('score').innerText = `Score: ${score}`;
+                }, 30000); // Increase score every 30 seconds
+            } else if (item === 'dryerSheets') {
+                itemTimers[item] = setInterval(() => {
+                    score += 30;
+                    document.getElementById('score').innerText = `Score: ${score}`;
+                }, 35000); // Increase score every 35 seconds
+            }
+        }
+
+        // Stop item timer if needed
+        function stopItemTimer(item) {
+            clearInterval(itemTimers[item]);
+        }
+    </script>
 </body>
 </html>
-             
 
 
              
