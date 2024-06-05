@@ -20,7 +20,16 @@
                 "footer footer footer";
             height: 100vh;
         }
-
+#mute{ background-color: rgba(140, 166, 157, 0.754);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;}
         .title { 
             grid-area: title; 
             background-color: rgb(177, 211, 199);
@@ -137,7 +146,7 @@
             <button class="clicker" onclick="incrementScore()" aria-label="Click to increase score"><img src="images/machine.png" alt="Clicker Image" class="clickerpic"></button>
             <div class="stats" id="score" role="status" aria-live="polite">Score: 0</div>
         </div>
-        <div class="extras"><button onclick="muteMusic()" aria-label="Mute Music Button">Mute Button</button></div>
+        <div class="extras"><button onclick="muteMusic()" aria-label="Mute Music Button" id="mute">Mute Button</button></div>
         <br>
         <div class="footer">Credit to Leidoe07 and Canva</div>
         <div class="store">
@@ -230,10 +239,10 @@
             basicSoap: 5,
             fabricSoftener: 15,
             bleach: 25,
-            stainRemover: 30,
-            scentBooster: 40,
-            washingMachineCleaner: 50,
-            dryerSheets: 60
+            stainRemover: 40,
+            scentBooster: 50,
+            washingMachineCleaner: 75,
+            dryerSheets: 90
         };
 
         let itemTimers = {};
