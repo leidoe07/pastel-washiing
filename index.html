@@ -132,12 +132,12 @@
 <body>
     <div class="container">
         <div class="title"><h1>Pastel Washing</h1></div>
-        <button onclick="muteMusic()" aria-label="Mute Music Button">Mute Button</button>
+        
         <div class="game">
             <button class="clicker" onclick="incrementScore()" aria-label="Click to increase score"><img src="images/machine.png" alt="Clicker Image" class="clickerpic"></button>
             <div class="stats" id="score" role="status" aria-live="polite">Score: 0</div>
         </div>
-        <div class="extras"></div>
+        <div class="extras"><button onclick="muteMusic()" aria-label="Mute Music Button">Mute Button</button></div>
         <br>
         <div class="footer">Credit to Leidoe07 and Canva</div>
         <div class="store">
@@ -203,18 +203,19 @@
         let bgMusic = new Howl({
             src:['Viktor Kraus - Blueberries.mp3'],
             autoplay: true,
-            volume:.10,
+            volume: 0.10,
             loop: true
         });
 
+      
         let sound1 = new Howl({
-            src: ['386508-pub_glass_wash_rinse.wav'],
-        });
+  src: ['click_sound_1.mp3'],
+})
 
-        function increasePoints() {
-            points = score + 1;
-            sound1.play(); // Play sound1 when user clicks on button
-        }
+        function incrementScore() {
+            score = score + 1
+  sound1.play() // Play sound1 when user clicks on button
+}
 
         function muteMusic() {
             bgMusic.pause();
@@ -240,6 +241,8 @@
         function incrementScore() {
             score++;
             document.getElementById('score').innerText = `Score: ${score}`;
+            score = score + 1
+  sound1.play()
         }
 
         function buyItem(item) {
@@ -314,6 +317,4 @@
     </script>
 </body>
 </html>
-
-
              
