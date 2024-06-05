@@ -207,10 +207,16 @@
 let bgMusic = new Howl({
     src:['Viktor Kraus - Blueberries.mp3'],
     autoplay: true,
-    volume:.30,
+    volume:.10,
     loop: true
 })
-
+let sound1 = new Howl({
+  src: ['386508-pub_glass_wash_rinse.wav'],
+})
+function increasePoints() {
+  points = score + 1
+  386508-pub_glass_wash_rinse.wav.play() // Play sound1 when user clicks on button
+}
 
 
 function muteMusic() {
